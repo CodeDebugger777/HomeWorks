@@ -7,38 +7,45 @@ using System.Threading.Tasks;
 
 namespace Task_3._5._4
 {
-    internal class Article
+    public class Article
     {
-        private string product_name;
-        private string store_name;
-        private double product_value;
+        
+        private string name;
+        private string storeName;
+        private decimal price;
 
-        public Article(string productName, string storeName, double price)
+        public string Name
         {
-            this.product_name = productName;
-            this.store_name = storeName;
-            this.product_value = price;
-        }
-        public string ProductName
-        {
-            get { return product_name; }
+            get { return name; }
         }
 
         public string StoreName
         {
-            get { return store_name; }
+            get { return storeName; }
         }
 
         public decimal Price
         {
-            get { return product_value; }
+            get { return price; }
         }
 
+
+
+        public Article(string name, string storeName, decimal price)
+        {
+            this.name = name;
+            this.storeName = storeName;
+            this.price = price;
+        }
+
+        
+        
         // Метод для виведення інформації про товар
         public void DisplayInfo()
         {
-            Console.WriteLine($"Product name: {product_name, store: {store_name}, value: {product_value} грн");
+            Console.WriteLine($"Назва товару: {name}");
+            Console.WriteLine($"Назва магазину: {storeName}");
+            Console.WriteLine($"Вартість товару: {price} грн");
         }
-
     }
 }

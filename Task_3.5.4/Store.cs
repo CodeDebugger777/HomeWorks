@@ -7,44 +7,61 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Task_3._5._4
 {
-    class Store
+    public class Store
     {
         private Article[] articles;
 
-        // Конструктор для ініціалізації масиву товарів
-        public Store(Article[] articles)
+        
+        public Store(int numberOfArticles)
         {
-            this.articles = articles;
+            articles = new Article[numberOfArticles];
         }
 
-        // Метод для виведення інформації про товар за номером
-        public void DisplayArticleByIndex(int index)
+        
+        public Article this[int index]
         {
-            if (index >= 0 && index < articles.Length)
+            get
             {
-                articles[index].DisplayInfo();
+                if (index >= 0 && index < articles.Length)
+                {
+                    return articles[index];
+                }
+                else
+                {
+                    Console.WriteLine("Товар з таким індексом не знайдено.");
+                    return null;
+                }
             }
-            else
+            set
             {
-                Console.WriteLine("Товар з таким індексом не знайдений.");
+                if (index >= 0 && index < articles.Length)
+                {
+                    articles[index] = value;
+                }
+                else
+                {
+                    Console.WriteLine("Невірний індекс для додавання товару.");
+                }
             }
         }
-        public void DisplayArticleByName(string product_name)
+
+        
+        public void DisplayArticleByName(string name)
         {
             bool found = false;
             foreach (var article in articles)
             {
-                if (article.ProductName.Equals(product_name, StringComparison.OrdinalIgnoreCase))
+                if (article != null && article.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
                 {
                     article.DisplayInfo();
                     found = true;
                 }
             }
+
             if (!found)
             {
-                Console.WriteLine("Товар з такою назвою не знайдений.");
+                Console.WriteLine("Товар з такою назвою не знайдено.");
             }
         }
-        
     }
 }
